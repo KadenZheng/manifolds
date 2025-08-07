@@ -89,6 +89,9 @@ def create_layer_pca_visualization(
         # Get PCA transformed data for this layer
         transformed = results_dict[layer_idx]['pca_transformed']
         
+        # Get variance explained for this layer
+        explained_variance = results_dict[layer_idx]['explained_variance']
+        
         # Plot each day with its color
         for day in range(7):
             mask = color_labels == day
@@ -98,8 +101,8 @@ def create_layer_pca_visualization(
                           alpha=0.6, s=50)
         
         ax.set_title(f'Layer {layer_idx}')
-        ax.set_xlabel('PC1')
-        ax.set_ylabel('PC2')
+        ax.set_xlabel(f'PC1 ({explained_variance[0]:.1%} variance)')
+        ax.set_ylabel(f'PC2 ({explained_variance[1]:.1%} variance)')
         ax.grid(True, alpha=0.3)
         
         # Add legend to first subplot only
@@ -436,6 +439,9 @@ def create_interactive_pca_with_hover(
     # Create dropdown menu
     dropdown_buttons = []
     for i, layer_idx in enumerate(layer_indices):
+        # Get variance explained for this layer
+        explained_variance = results_dict[layer_idx]['explained_variance']
+        
         # Determine which traces to show for this layer
         visibility = []
         for j in range(len(fig.data)):
@@ -448,15 +454,20 @@ def create_interactive_pca_with_hover(
                 label=f"Layer {layer_idx}",
                 method="update",
                 args=[{"visible": visibility},
-                      {"title": f"{context_name} - Layer {layer_idx} PCA Projection"}]
+                      {"title": f"{context_name} - Layer {layer_idx} PCA Projection",
+                       "xaxis.title": f"PC1 ({explained_variance[0]:.1%} variance)",
+                       "yaxis.title": f"PC2 ({explained_variance[1]:.1%} variance)"}]
             )
         )
     
     # Update layout
+    # Get variance explained for the first layer (shown by default)
+    first_layer_variance = results_dict[layer_indices[0]]['explained_variance']
+    
     fig.update_layout(
         title=f"{context_name} - Layer {layer_indices[0]} PCA Projection",
-        xaxis_title="PC1",
-        yaxis_title="PC2",
+        xaxis_title=f"PC1 ({first_layer_variance[0]:.1%} variance)",
+        yaxis_title=f"PC2 ({first_layer_variance[1]:.1%} variance)",
         hovermode='closest',
         updatemenus=[
             dict(
