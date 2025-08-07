@@ -68,11 +68,8 @@ manifolds/
 ### Prerequisites
 
 ```bash
-# Required packages
-pip install torch transformers
-pip install numpy pandas scikit-learn scipy
-pip install matplotlib plotly seaborn
-pip install jupyter notebook
+# Install all required packages
+pip install -r requirements.txt
 ```
 
 ### Model Requirements
@@ -88,7 +85,22 @@ git clone [repository-url]
 cd manifolds
 ```
 
-2. **Set up imports and configuration**
+2. **Set up environment variables**
+```bash
+# Copy the example environment file
+cp .env.example .env
+
+# Edit .env and add your Hugging Face token
+# Get a token from: https://huggingface.co/settings/tokens
+```
+
+3. **Test your setup**
+```bash
+# Run the setup notebook to verify everything works
+jupyter notebook notebooks/00_setup_and_test.ipynb
+```
+
+4. **Set up imports and configuration**
 ```python
 from src import Config, load_model_and_tokenizer
 from src import analyze_all_layers, create_incremental_datasets

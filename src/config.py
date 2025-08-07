@@ -9,6 +9,10 @@ from dataclasses import dataclass, field
 from typing import Optional, Dict, Any
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 
 @dataclass
@@ -59,9 +63,18 @@ def load_model_and_tokenizer(config: Config):
     """
     print(f"Loading model: {config.model_name}")
     
+    # Get HuggingFace token from environment
+    hf_token = os.getenv('HF_TOKEN')
+    if not hf_token or hf_token == 'your_hugging_face_token_here':
+        print("⚠️  Warning: HF_TOKEN not found in environment variables.")
+        print("   Please set your Hugging Face token in the .env file")
+        print("   or run: huggingface-cli login")
+        hf_token = None  # Will try to use cached credentials
+    
     tokenizer = AutoTokenizer.from_pretrained(
         config.model_name,
-        cache_dir=config.cache_dir
+        cache_dir=config.cache_dir,
+        token=hf_token
     )
     
     # Set padding token if not already set
@@ -72,7 +85,8 @@ def load_model_and_tokenizer(config: Config):
         config.model_name,
         cache_dir=config.cache_dir,
         torch_dtype=torch.float16 if config.device == "cuda" else torch.float32,
-        device_map="auto" if config.device == "cuda" else None
+        device_map="auto" if config.device == "cuda" else None,
+        token=hf_token
     )
     
     model.eval()  # Set to evaluation mode

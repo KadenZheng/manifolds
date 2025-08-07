@@ -34,6 +34,11 @@ ENV/
 temp/
 tmp/
 
+# Environment variables and secrets
+.env
+.env.local
+# Note: .env.example is tracked to show required variables
+
 # Large data files (if needed)
 # *.pkl
 # *.h5
