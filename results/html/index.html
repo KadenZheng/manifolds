@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manifolds Analysis - Interactive Visualizations</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        h1 { 
+            color: #2c3e50;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        h2 { 
+            color: #34495e;
+            margin-top: 40px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            font-size: 1.5em;
+        }
+        .viz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+        .viz-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .viz-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+        .viz-card a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .viz-card a:hover {
+            color: #667eea;
+        }
+        .description {
+            color: #7f8c8d;
+            font-size: 0.95em;
+            line-height: 1.4;
+            margin: 8px 0;
+        }
+        .file-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .file-size {
+            background: #667eea;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+        .badge {
+            background: #27ae60;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+        .badge.new {
+            background: #e74c3c;
+        }
+        .stats {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            color: #7f8c8d;
+            padding-top: 30px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .archive-note {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #856404;
+        }
+        .archive-note strong {
+            color: #533f03;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Manifolds Analysis - Interactive Visualizations</h1>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value">15</div>
+                <div class="stat-label">Active Visualizations</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">5</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">72.5 MB</div>
+                <div class="stat-label">Total Size</div>
+            </div>
+        </div>
+
+        <div class="archive-note">
+            <strong>🗂️ Note:</strong> Older versions and redundant visualizations have been archived in the <code>archive_old_versions/</code> folder for reference.
+        </div>
+
+        <h2>🎯 Circle Fitting Analysis</h2>
+        <div class="viz-grid">
+            <div class="viz-card">
+                <a href="circle_fitting_interactive_pca.html">PCA Space Circle Fitting</a>
+                <div class="description">Interactive visualization of circle fitting in 2D PCA space with layer slider</div>
+                <div class="file-info">
+                    <span class="badge">Interactive</span>
+                    <span class="file-size">4.7 MB</span>
+                </div>
+            </div>
+            <div class="viz-card">
+                <a href="circle_fitting_interactive_original.html">Original Space Analysis</a>
+                <div class="description">Hypersphere fitting in high-dimensional embedding space</div>
+                <div class="file-info">
+                    <span class="badge">Interactive</span>
+                    <span class="file-size">4.6 MB</span>
+                </div>
+            </div>
+            <div class="viz-card">
+                <a href="circle_fitting_metrics_comparison.html">Metrics Comparison</a>
+                <div class="description">Comprehensive R² and radius metrics across all layers</div>
+                <div class="file-info">
+                    <span class="badge">Dashboard</span>
+                    <span class="file-size">4.5 MB</span>
+                </div>
+            </div>
+        </div>
+
+        <h2>📏 Pairwise Distance Analysis</h2>
+        <div class="viz-grid">
+            <div class="viz-card">
+                <a href="pairwise_distances_interactive_dashboard_fixed.html">Interactive Dashboard</a>
+                <div class="description">Complete pairwise distance analysis with fixed titles and improved layout</div>
+                <div class="file-info">
+                    <span class="badge">Dashboard</span>
+                    <span class="file-size">4.6 MB</span>
+                </div>
+            </div>
+            <div class="viz-card">
+                <a href="pairwise_distances_slider_dashboard.html">Slider Dashboard</a>
+                <div class="description">Layer-by-layer exploration with interactive slider control</div>
+                <div class="file-info">
+                    <span class="badge">Interactive</span>
+                    <span class="file-size">4.6 MB</span>
+                </div>
+            </div>
+        </div>
+
+        <h2>🎨 PCA Visualization</h2>
+        <div class="viz-grid">
+            <div class="viz-card">
+                <a href="pca_interactive_add_plur.html">Add Plural Context PCA</a>
+                <div class="description">PCA visualization of temporal embeddings with add_plur context</div>
+                <div class="file-info">
+                    <span class="badge">Interactive</span>
+                    <span class="file-size">5.1 MB</span>
+                </div>
+            </div>
+            <div class="viz-card">
+                <a href="pca_multiples_7_interactive.html">Multiples of 7 Analysis</a>
+                <div class="description">Interactive PCA comparing standard offsets with multiples of 7</div>
+                <div class="file-info">
+                    <span class="badge">Interactive</span>
+                    <span class="file-size">7.9 MB</span>
+                </div>
+            </div>
+            <div class="viz-card">
+                <a href="pca_with_without_multiples_7.html">With/Without Multiples Comparison</a>
+                <div class="description">Side-by-side comparison of PCA with and without multiples of 7</div>
+                <div class="file-info">
+                    <span class="badge">Comparison</span>
+                    <span class="file-size">7.6 MB</span>
+                </div>
+            </div>
+        </div>
+
+        <h2>📈 Layer Metrics</h2>
+        <div class="viz-grid">
+            <div class="viz-card">
+                <a href="layer_metrics_clean.html">Clean Metrics Overview</a>
+                <div class="description">Streamlined view of key metrics across all layers</div>
+                <div class="file-info">
+                    <span class="badge">Dashboard</span>
+                    <span class="file-size">4.4 MB</span>
+                </div>
+            </div>
+            <div class="viz-card">
+                <a href="layer_metrics_individual.html">Individual Layer Analysis</a>
+                <div class="description">Detailed metrics for each layer separately</div>
+                <div class="file-info">
+                    <span class="badge">Detailed</span>
+                    <span class="file-size">4.5 MB</span>
+                </div>
+            </div>
+            <div class="viz-card">
+                <a href="outlier_detection_layer_10.html">Outlier Detection (Layer 10)</a>
+                <div class="description">Statistical outlier analysis for layer 10 embeddings</div>
+                <div class="file-info">
+                    <span class="badge">Analysis</span>
+                    <span class="file-size">4.5 MB</span>
+                </div>
+            </div>
+        </div>
+
+        <h2>🔍 Additional Analysis</h2>
+        <div class="viz-grid">
+            <div class="viz-card">
+                <a href="input_vs_result_labeling_interactive.html">Input vs Result Day Labeling</a>
+                <div class="description">Comparison of embeddings colored by input day vs result day</div>
+                <div class="file-info">
+                    <span class="badge">Comparison</span>
+                    <span class="file-size">4.7 MB</span>
+                </div>
+            </div>
+            <div class="viz-card">
+                <a href="variance_explained_interactive.html">Variance Explained Analysis</a>
+                <div class="description">PCA variance explained across layers and components</div>
+                <div class="file-info">
+                    <span class="badge">Interactive</span>
+                    <span class="file-size">4.5 MB</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>Temporal Manifold Analysis</strong></p>
+            <p>Interactive visualizations exploring the circular structure of temporal embeddings in language models</p>
+            <p style="margin-top: 20px; font-size: 0.9em;">
+                Generated from notebooks in <code>notebooks/analysis/</code>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
